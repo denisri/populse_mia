@@ -544,9 +544,6 @@ class MiniViewer(QWidget):
 
                 if image is None and aims:
                     try:
-                        print('read image:', file_path)
-                        import traceback
-                        traceback.print_stack()
                         image = aims.read(file_path)
                         # patch the image to mimick a nibabel image
                         image.get_data = types.MethodType(
