@@ -120,11 +120,9 @@ def files_for_data(path):
             if path.endswith('.' + ext):
                 break
         base_path = path[:-len(ext)-1]
-        minf = base_path + '.' + next(iter(exts)) + '.minf'
         paths = [base_path + '.' + ext for ext in exts
                  if os.path.exists(base_path + '.' + ext)]
-        if os.path.exists(minf):
-            paths.append(minf)
+        paths += [p + '.minf' for p in paths if os.path.exists(p + '.minf')]
         return paths
     if reader == 'nibabel':
         # I don't know how to do this right now
