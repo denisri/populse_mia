@@ -6,6 +6,8 @@
 # for details.
 ##########################################################################
 
+import os
+
 try:
     from soma import aims
 except ImportError:
@@ -59,9 +61,14 @@ def nibabel_file_extensions(formats):
     # I don't know how to inspect that
     return set(['nii', 'nii.gz'])
 
+
 _all_extensions_ = None
 
+
 def supported_image_extensions():
+    ''' Returns all supported image files extensions, using aims or nibabel
+    when they are available.
+    '''
     global _all_extensions_
     if _all_extensions_ is not None:
         return _all_extensions_
@@ -69,4 +76,57 @@ def supported_image_extensions():
     exts.update(nibabel_file_extensions(nibabel_image_formats()))
     _all_extensions_ = exts
     return _all_extensions_
+
+
+def get_format(path):
+    ''' determine the format of the file path, and return its format and
+    reader module ('aims' or 'nibabel')
+
+    Returns
+    -------
+    format_info: tuple
+        (format, reader)
+    '''
+    if aims:
+        finder = aims.Finder()
+        if finder.check(path):
+            # file is recognized by Aims / Soma-IO
+            return (finder.format(), 'aims')
+    for ext in supported_image_extensions():
+        if path.endswith('.' + ext):
+            if ext in nibabel_file_extensions():
+                # should be supported by nibabel, use a single file
+                # (just because I don't know how to get more details)
+                if ext in ('nii', 'nii.gz'):
+                    return ("NIFTI-1", 'nibabel');
+    # format is not recognized
+    return None
+
+
+def files_for_data(path):
+    ''' Try to determine all files making up the selected data.
+    path is one of the needed files, but there may be others
+    (ex: .img/.hdr couple)
+    '''
+    format_info = get_format(path)
+    if format_info is None:
+        return None
+    format, reader = format_info
+    if reader == 'aims':
+        exts = aims.soma.DataSourceInfoLoader.extensions(format)
+        if not exts:
+            exts = aims.Finder.extensions(format)
+        for ext in exts:
+            if path.endswith('.' + ext):
+                break
+        base_path = path[:-len(ext)-1]
+        minf = base_path + '.' + next(iter(exts)) + '.minf'
+        paths = [base_path + '.' + ext for ext in exts
+                 if os.path.exists(base_path + '.' + ext)]
+        if os.path.exists(minf):
+            paths.append(minf)
+        return paths
+    if reader == 'nibabel':
+        # I don't know how to do this right now
+        return [path]
 

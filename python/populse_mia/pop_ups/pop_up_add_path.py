@@ -16,6 +16,7 @@ from PyQt5.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLineEdit, QLabel
 # Populse_MIA imports
 from populse_mia.project.project import COLLECTION_CURRENT, COLLECTION_INITIAL, TAG_TYPE, TAG_CHECKSUM, TYPE_NII, \
     TYPE_MAT
+from populse_mia.data_browser import formats
 
 
 class PopUpAddPath(QDialog):
@@ -111,8 +112,14 @@ class PopUpAddPath(QDialog):
 
             path = os.path.relpath(path)
             filename = os.path.basename(path)
-            copy_path = os.path.join(self.project.folder, "data", "downloaded_data", filename)
-            shutil.copy(path, copy_path)
+            copy_path = os.path.join(self.project.folder, "data",
+                                     "downloaded_data", filename)
+            paths = formats.files_for_data(path)
+            for p in paths:
+                f = os.path.basename(p)
+                copy_path = os.path.join(self.project.folder, "data",
+                                         "downloaded_data", f)
+                shutil.copy(p, copy_path)
             with open(path, 'rb') as scan_file:
                 data = scan_file.read()
                 checksum = hashlib.md5(data).hexdigest()
