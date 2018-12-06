@@ -20,8 +20,18 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QSplitter, \
 from scipy.ndimage import rotate  # to work with NumPy arrays
 
 from populse_mia.software_properties.config import Config
+import types
 
-import nibabel as nib  # to read nifti file
+try:
+    import nibabel as nib  # to read nifti file
+except:
+    # nibabel is not present
+    nib = None
+try:
+    from soma import aims
+except:
+    # aims is not present
+    aims = None
 import numpy as np  # a N-dimensional array object
 
 
@@ -166,7 +176,17 @@ class ImageViewer(QWidget):
         self.imageLabel.resize(self.scaleFactor * self.imageLabel.pixmap().size())
 
     def open(self, filePath):
-        self.img = nib.load(filePath)
+        self.img = None
+        if nib is not None:
+            try:
+                self.img = nib.load(filePath)
+            except:
+                pass
+        if self.img is None and aims is not None:
+              self.img = aims.read(filePath)
+              # patch the image to mimick a nibabel image
+              self.img.get_data = types.MethodType(
+                  lambda self: np.asarray(self), self.img)
         self.textInfoTop.setText('File : '+filePath+'\n')
         self.textInfoTop.append('Dim : ' + str(self.img.shape)+'\n')
         self.enableSliders()

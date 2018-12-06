@@ -8,11 +8,21 @@
 
 import os
 from functools import partial
-import nibabel as nib
+try:
+    import nibabel as nib
+except:
+    # nibabel is not present
+    nib = None
+try:
+    from soma import aims
+except:
+    # aims is not present
+    aims = None
 from scipy.ndimage import rotate  # to work with NumPy arrays
 import numpy as np  # a N-dimensional array object
 from skimage.transform import resize
 import skimage as sk
+import types
 
 # PyQt5 imports
 from PyQt5.QtCore import Qt
@@ -523,13 +533,30 @@ class MiniViewer(QWidget):
 
             # Reading the images from the file paths
             for idx, file_path in enumerate(self.file_paths.copy()):
-                try:
-                    self.img.insert(idx, nib.load(file_path))
-                except nib.filebasedimages.ImageFileError:
-                    print("Error while trying to display the image " + file_path)
-                    self.file_paths.remove(file_path)
-                except FileNotFoundError:
-                    print("File " + file_path + " not existing")
+                image = None
+                if nib:
+                    try:
+                        image = nib.load(file_path)
+                    except nib.filebasedimages.ImageFileError:
+                        print("Error while trying to display the image " + file_path)
+                    except FileNotFoundError:
+                        print("File " + file_path + " not existing")
+
+                if image is None and aims:
+                    try:
+                        print('read image:', file_path)
+                        import traceback
+                        traceback.print_stack()
+                        image = aims.read(file_path)
+                        # patch the image to mimick a nibabel image
+                        image.get_data = types.MethodType(
+                            lambda self: np.asarray(self), image)
+                    except:
+                        print("Error while trying to read the image",
+                              file_path)
+                if image is not None:
+                    self.img.insert(idx, image)
+                else:
                     self.file_paths.remove(file_path)
 
             # If we are in the "cursors" display mode
