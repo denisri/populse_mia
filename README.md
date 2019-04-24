@@ -76,23 +76,24 @@ The documentation is available on populse_mia's website here: [https://populse.g
 
 # Requirements
 
-* SIP
-* pyqt5
-* pyyaml
-* python-dateutil
-* sqlalchemy
-* lark-parser
-* scipy
-* nibabel
-* snakeviz
-* pillow
-* matplotlib
-* traits
 * capsul
-* soma_workflow
+* lark-parser
+* matplotlib
+* mia-processes
+* nibabel
 * nipype
-* scikit-image
+* pillow
 * populse-db
+* pyqt5
+* python-dateutil
+* pyyaml
+* scikit-image
+* scipy
+* SIP
+* sqlalchemy
+* snakeviz
+* soma_workflow
+* traits
 
 # Other packages used
 
