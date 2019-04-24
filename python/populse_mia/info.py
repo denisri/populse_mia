@@ -50,7 +50,7 @@ if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
         'capsul',
         'lark-parser',
         'matplotlib<3.1',
-        'mia-processes'
+        'mia-processes',
         'nibabel',
         'nipype',
         'pillow',
@@ -72,7 +72,7 @@ elif sys.version_info >= (3 , 6):
         'capsul',
         'lark-parser',
         'matplotlib',
-        'mia-processes'
+        'mia-processes',
         'nibabel',
         'nipype',
         'pillow',
