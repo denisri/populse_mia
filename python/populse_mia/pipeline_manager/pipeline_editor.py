@@ -330,13 +330,13 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_tab_name_by_index(self.currentIndex())
 
     def get_filename_by_index(self, idx):
-        """
-        Get the relative path to the file the pipeline in the editor at the
-           given index has been last saved to.
+        """Get the relative path to the file the pipeline in the editor at the
+        given index has been last saved to.
         If the pipeline has never been saved, returns the title of the tab.
 
         :param idx: index of the editor
         :return: the file name corresponding to the index
+
         """
 
         editor = self.get_editor_by_index(idx)
@@ -344,12 +344,12 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             return editor.get_current_filename()
 
     def get_current_filename(self):
-        """
-        Gets the relative path to the file the pipeline in the current editor
-           has been last saved to.
+        """Gets the relative path to the file the pipeline in the current editor
+        has been last saved to.
         If the pipeline has never been saved, returns the title of the tab.
 
         :return: the filename of the current editor
+
         """
 
         return self.get_filename_by_index(self.currentIndex())
