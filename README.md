@@ -31,7 +31,7 @@ The documentation is available on populse_mia's website here: [https://populse.g
   * We use Git extension for versioning large files ([Git LFS](https://git-lfs.github.com/)) of the populse_mia project. We therefore recommend to [install git-lfs](https://github.com/git-lfs/git-lfs/wiki/Installation).
   * Clone the source codes
 
-    * Get source code from Github. Replace [mia_install_dir] with a directory of your choice
+    * Get source codes from Github. Replace [mia_install_dir] with a directory of your choice
 
           git clone https://github.com/populse/populse_mia.git [mia_install_dir]
 
