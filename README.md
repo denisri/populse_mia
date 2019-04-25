@@ -23,7 +23,9 @@ The documentation is available on populse_mia's website here: [https://populse.g
 
 * From source, for Linux distributions
   * A compatible version of Python must be installed
-  * Install a Version Control System, for example [git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control), and clone the source codes
+  * Install a Version Control System, for example [git](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+  * We use Git extension for versioning large files ([Git LFS](https://git-lfs.github.com/)) of the populse_mia project. We therefore recommend to [install git-lfs](https://github.com/git-lfs/git-lfs/wiki/Installation).
+  * Clone the source codes
     * Depending of your distribution, [package management system](https://en.wikipedia.org/wiki/Package_manager) can be different
 
           sudo apt-get install git # Debian like
