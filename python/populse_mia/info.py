@@ -69,7 +69,6 @@ PLATFORMS = 'OS Independent'
     
 if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
     REQUIRES = [
-        'SIP==4.19.4',
         'capsul',
         'lark-parser',
         'matplotlib<3.1',
