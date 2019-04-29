@@ -15,6 +15,7 @@ install:
   - "python --version"
   - "pip install SIP"
   - "pip install scipy"
+  - "pip install scikit-image"
   - "pip install --upgrade cython"
   - "pip install numpy"
   - "pip install freetype-py"
