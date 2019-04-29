@@ -45,28 +45,6 @@ VERSION = __version__
 CLASSIFIERS = CLASSIFIERS
 PLATFORMS = 'OS Independent'
 
-#if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
-#    REQUIRES = [
-#        'capsul',
-#        'lark-parser',
-#        'matplotlib<3.1',
-#        'mia-processes',
-#        'nibabel',
-#        'nipype',
-#        'pillow',
-#        'populse-db',
-#        'pyqt5',
-#        'python-dateutil',
-#        'pyyaml',
-#        'scikit-image',
-#        'scipy',
-#        'SIP==4.19.4',  
-#        'sqlalchemy',
-#        'snakeviz',
-#        'soma_workflow',
-#        'traits',
-#]
-    
 if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
     REQUIRES = [
         'capsul',
@@ -82,6 +60,7 @@ if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
         'pyyaml',
         'scikit-image',
         'scipy',
+        'SIP==4.19.3',  
         'sqlalchemy',
         'snakeviz',
         'soma_workflow',
