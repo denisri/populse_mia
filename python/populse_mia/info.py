@@ -60,7 +60,7 @@ if sys.version_info < (3 , 6) and sys.version_info >= (3 , 5):
         'pyyaml',
         'scikit-image',
         'scipy',
-        'SIP==4.19.5',  
+        'SIP==4.19.4',  
         'sqlalchemy',
         'snakeviz',
         'soma_workflow',
