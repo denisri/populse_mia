@@ -13,6 +13,7 @@ install:
   - "python -m pip install --upgrade pip"
   - "pip list"
   - "python --version"
+  - "pip install SIP"
   - "pip install --upgrade cython"
   - "pip install numpy"
   - "pip install freetype-py"
