@@ -16,7 +16,7 @@ install:
   #
   - "pip install capsul"
   - "pip install lark-parser"
-  - "pip install matplotlib<3.1"
+  - "pip install matplotlib"
   - "pip install mia-processes"
   - "pip install nibabel"
   - "pip install nipype"
