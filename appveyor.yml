@@ -32,6 +32,7 @@ install:
   - "pip install snakeviz"
   - "pip install soma_workflow"
   - "pip install traits"
+  - "pip list"
   #
   - "pip install --upgrade cython"
   - "pip install numpy"
