@@ -33,7 +33,7 @@ The documentation is available on populse_mia's website here: [https://populse.g
 
     * Get source codes from Github. Replace [mia_install_dir] with a directory of your choice
 
-          git clone https://github.com/populse/populse_mia.git [mia_install_dir]
+          git lfs clone https://github.com/populse/populse_mia.git [mia_install_dir]
 
     * Or download the zip file (populse_mia-master.zip) of the project ([green button "Clone or download"](https://github.com/populse/populse_mia)), then extract the data in the directory of your choice [mia_install_dir]
 

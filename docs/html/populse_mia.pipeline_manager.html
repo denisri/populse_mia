@@ -211,7 +211,11 @@ filtering is done, the filter is saved in the process.</p>
 <li>reset_search_bar: reset the search bar of the rapid search</li>
 <li>search_str: update the files to display in the browser</li>
 <li>ok_clicked: sets the filter to the process and closes the widget</li>
-<li>set_plug_value: sets the output of the filter to the output of the node</li>
+<li><dl class="first docutils">
+<dt>set_plug_value: sets the output of the filter to the output of the</dt>
+<dd>node</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -351,7 +355,8 @@ filtering is done, the filter is saved in the process.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>node_name</strong> – name of the node</li>
 <li><strong>plug_name</strong> – name of the plug</li>
-<li><strong>parameters</strong> – tuple containing the index of the plug, the current pipeline instance and the type of the plug value</li>
+<li><strong>parameters</strong> – tuple containing the index of the plug, the current
+pipeline instance and the type of the plug value</li>
 <li><strong>process</strong> – process of the node</li>
 </ul>
 </td>
@@ -416,7 +421,8 @@ new links that are the same than the selected node.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>pipeline</strong> – current pipeline</li>
-<li><strong>new_node_name</strong> – new node name (is None except when this method is called from an undo/redo)</li>
+<li><strong>new_node_name</strong> – new node name (is None except when this method
+is called from an undo/redo)</li>
 </ul>
 </td>
 </tr>
@@ -451,7 +457,8 @@ new links that are the same than the selected node.</p>
 <li><strong>plug_name</strong> – name of the plug</li>
 <li><strong>pipeline</strong> – current pipeline</li>
 <li><strong>value_type</strong> – type of the plug value</li>
-<li><strong>new_value</strong> – new value for the plug (is None except when this method is called from an undo/redo)</li>
+<li><strong>new_value</strong> – new value for the plug (is None except when this
+method is called from an undo/redo)</li>
 </ul>
 </td>
 </tr>
@@ -469,7 +476,8 @@ new links that are the same than the selected node.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
 <li><strong>plug_name</strong> – name of the plug</li>
-<li><strong>parameters</strong> – tuple containing the index of the plug, the current pipeline instance and the type of the plug value</li>
+<li><strong>parameters</strong> – tuple containing the index of the plug,
+the current pipeline instance and the type of the plug value</li>
 <li><strong>filter_res_list</strong> – list of the filtered files</li>
 </ul>
 </td>
@@ -619,14 +627,22 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <li>_remove_plug: removes a plug</li>
 <li>add_link: add a link between two nodes</li>
 <li>add_process: adds a process to the pipeline</li>
-<li>check_modifications: checks if the nodes of the pipeline have been modified</li>
+<li><dl class="first docutils">
+<dt>check_modifications: checks if the nodes of the pipeline have been</dt>
+<dd>modified</dd>
+</dl>
+</li>
 <li>del_node: deletes a node</li>
 <li>dragEnterEvent: event handler when the mouse enters the widget</li>
 <li>dragMoveEvent: event handler when the mouse moves in the widget</li>
 <li>dropEvent: event handler when something is dropped in the widget</li>
 <li>export_node_plugs: exports all the plugs of a node</li>
 <li>find_process: finds the dropped process in the system’s paths</li>
-<li>get_current_filename: returns the relative path the pipeline was last saved to. Empty if never saved.</li>
+<li><dl class="first docutils">
+<dt>get_current_filename: returns the relative path the pipeline was</dt>
+<dd>last saved to. Empty if never saved.</dd>
+</dl>
+</li>
 <li>save_pipeline: saves the pipeline</li>
 <li>update_history: updates the history for undos and redos</li>
 <li>update_node_name: updates a node name</li>
@@ -651,7 +667,7 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.add_link">
 <code class="descname">add_link</code><span class="sig-paren">(</span><em>source</em>, <em>dest</em>, <em>active</em>, <em>weak</em>, <em>from_undo=False</em>, <em>from_redo=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.add_link"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.add_link" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a link between two nodes.</p>
+<dd><p>Add a link between two nodes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -661,8 +677,10 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <li><strong>dest</strong> – tuple containing the node and plug destination names</li>
 <li><strong>active</strong> – boolean that is True if the link is activated</li>
 <li><strong>weak</strong> – boolean that is True if the link is weak</li>
-<li><strong>from_undo</strong> – boolean that is True if the action has been made using an undo</li>
-<li><strong>from_redo</strong> – boolean that is True if the action has been made using a redo</li>
+<li><strong>from_undo</strong> – boolean that is True if the action has been made
+using an undo</li>
+<li><strong>from_redo</strong> – boolean that is True if the action has been made
+using a redo</li>
 </ul>
 </td>
 </tr>
@@ -673,7 +691,7 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.add_process">
 <code class="descname">add_process</code><span class="sig-paren">(</span><em>class_process</em>, <em>node_name=None</em>, <em>from_undo=False</em>, <em>from_redo=False</em>, <em>links=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.add_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.add_process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a process to the pipeline</p>
+<dd><p>Add a process to the pipeline.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -700,15 +718,17 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.del_node">
 <code class="descname">del_node</code><span class="sig-paren">(</span><em>node_name=None</em>, <em>from_undo=False</em>, <em>from_redo=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.del_node"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.del_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes a node</p>
+<dd><p>Delete a node.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>node_name</strong> – name of the corresponding node (using when undo/redo) (str)</li>
-<li><strong>from_undo</strong> – boolean that is True if the action has been made using an undo</li>
-<li><strong>from_redo</strong> – boolean that is True if the action has been made using a redo</li>
+<li><strong>node_name</strong> – name of the corresponding node (using when undo/redo)</li>
+<li><strong>from_undo</strong> – boolean, True if the action has been made using an
+undo</li>
+<li><strong>from_redo</strong> – boolean, True if the action has been made using a
+redo</li>
 </ul>
 </td>
 </tr>
@@ -790,7 +810,8 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.get_current_filename">
 <code class="descname">get_current_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.get_current_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.get_current_filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the relative path the pipeline was last saved to. Empty if never saved.</p>
+<dd><p>Returns the relative path the pipeline was last saved to.
+Empty if never saved.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -828,16 +849,19 @@ filtering is done, the result (as a list of files) is set to the plug.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_history">
 <code class="descname">update_history</code><span class="sig-paren">(</span><em>history_maker</em>, <em>from_undo</em>, <em>from_redo</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.update_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the history for undos and redos
+<dd><p>Update the history for undos and redos.
 This method is called after each action in the PipelineEditor.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>history_maker</strong> – list that contains information about what has been done</li>
-<li><strong>from_undo</strong> – boolean that is True if the action has been made using an undo</li>
-<li><strong>from_redo</strong> – boolean that is True if the action has been made using a redo</li>
+<li><strong>history_maker</strong> – list that contains information about what has
+been done</li>
+<li><strong>from_undo</strong> – boolean that is True if the action has been made
+using an undo</li>
+<li><strong>from_redo</strong> – boolean that is True if the action has been made
+using a redo</li>
 </ul>
 </td>
 </tr>
@@ -848,7 +872,7 @@ This method is called after each action in the PipelineEditor.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_node_name">
 <code class="descname">update_node_name</code><span class="sig-paren">(</span><em>old_node</em>, <em>old_node_name</em>, <em>new_node_name</em>, <em>from_undo=False</em>, <em>from_redo=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.update_node_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_node_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates a node name</p>
+<dd><p>Update a node name.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -857,8 +881,10 @@ This method is called after each action in the PipelineEditor.</p>
 <li><strong>old_node</strong> – Node object to change</li>
 <li><strong>old_node_name</strong> – original name of the node (str)</li>
 <li><strong>new_node_name</strong> – new name of the node (str)</li>
-<li><strong>from_undo</strong> – boolean that is True if the action has been made using an undo</li>
-<li><strong>from_redo</strong> – boolean that is True if the action has been made using a redo</li>
+<li><strong>from_undo</strong> – boolean, True if the action has been made using an
+undo</li>
+<li><strong>from_redo</strong> – boolean, True if the action has been made using a
+redo</li>
 </ul>
 </td>
 </tr>
@@ -869,7 +895,7 @@ This method is called after each action in the PipelineEditor.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_plug_value">
 <code class="descname">update_plug_value</code><span class="sig-paren">(</span><em>node_name</em>, <em>new_value</em>, <em>plug_name</em>, <em>value_type</em>, <em>from_undo=False</em>, <em>from_redo=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditor.update_plug_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditor.update_plug_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates a plug value</p>
+<dd><p>Update a plug value.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -879,13 +905,15 @@ This method is called after each action in the PipelineEditor.</p>
 <li><strong>new_value</strong> – new value to set to the plug</li>
 <li><strong>plug_name</strong> – name of the plug to change (str)</li>
 <li><strong>value_type</strong> – type of the new value</li>
-<li><strong>from_undo</strong> – boolean that is True if the action has been made using an undo</li>
-<li><strong>from_redo</strong> – boolean that is True if the action has been made using a redo</li>
+<li><strong>from_undo</strong> – boolean, True if the action has been made using an</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
+<p>undo
+:param from_redo: boolean, True if the action has been made using a
+redo</p>
 </dd></dl>
 
 </dd></dl>
@@ -1080,9 +1108,11 @@ This method is called after each action in the PipelineEditor.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditorTabs.get_current_filename">
 <code class="descname">get_current_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditorTabs.get_current_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditorTabs.get_current_filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the relative path to the file the pipeline in the current editor
-has been last saved to.
-If the pipeline has never been saved, returns the title of the tab.</p>
+<dd><dl class="docutils">
+<dt>Gets the relative path to the file the pipeline in the current editor</dt>
+<dd>has been last saved to.</dd>
+</dl>
+<p>If the pipeline has never been saved, returns the title of the tab.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1173,9 +1203,11 @@ Trailing ” *” and ampersand (“&amp;”) characters are removed.</p>
 <dl class="method">
 <dt id="populse_mia.pipeline_manager.pipeline_editor.PipelineEditorTabs.get_filename_by_index">
 <code class="descname">get_filename_by_index</code><span class="sig-paren">(</span><em>idx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/populse_mia/pipeline_manager/pipeline_editor.html#PipelineEditorTabs.get_filename_by_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#populse_mia.pipeline_manager.pipeline_editor.PipelineEditorTabs.get_filename_by_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the relative path to the file the pipeline in the editor at the
-given index has been last saved to.
-If the pipeline has never been saved, returns the title of the tab.</p>
+<dd><dl class="docutils">
+<dt>Get the relative path to the file the pipeline in the editor at the</dt>
+<dd>given index has been last saved to.</dd>
+</dl>
+<p>If the pipeline has never been saved, returns the title of the tab.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
