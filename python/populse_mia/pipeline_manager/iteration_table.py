@@ -196,7 +196,6 @@ class IterationTable(QWidget):
 
         Used only for tests.
         """
-        print("called")
         push_button = self.push_buttons[-1]
         push_button.deleteLater()
         push_button = None
