@@ -3,3 +3,4 @@ data_tests/Bruker_files filter=lfs diff=lfs merge=lfs -text
 data_tests/Nifti_files filter=lfs diff=lfs merge=lfs -text
 data_tests/Philips_files filter=lfs diff=lfs merge=lfs -text
 data_test filter=lfs diff=lfs merge=lfs -text
+resources/** filter=lfs diff=lfs merge=lfs -text
