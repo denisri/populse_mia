@@ -46,8 +46,10 @@ class ProcessLibraryWidget(QWidget):
     Widget that handles the available Capsul's processes in the software
 
     Methods:
-        - load_config: read the config in process_config.yml and return it as a dictionary
-        - load_packages: sets packages and paths to the widget and to the system paths
+        - load_config: read the config in process_config.yml and return it as
+          a dictionary
+        - load_packages: sets packages and paths to the widget and to the
+          system paths
         - open_pkg_lib: opens the package library
         - save_config: saves the current config to process_config.yml
         - update_config: updates the config and loads the corresponding packages
@@ -1668,64 +1670,3 @@ if __name__ == "__main__":
     plw = ProcessLibraryWidget()
     plw.show()
     sys.exit(app.exec_())
-
-
-
-################# OLD VERSION OF THE TREE VIEW (WITH A QTREEWIDGET)
-'''class ProcessLibrary(QTreeWidget):
-    """ A library that displays all the available processes.
-    """
-    def __init__(self, package_tree):
-        """ Generate the library.
-        """
-        super(ProcessLibrary, self).__init__()
-        self.setHeaderLabel("Available processes")
-        self.package_tree = package_tree
-        self.generate_tree()
-
-    def generate_tree(self):
-        self.clear()
-        self.fill_item(self.invisibleRootItem(), self.package_tree)
-
-    def fill_item(self, item, value):
-        item.setExpanded(True)
-
-        if type(value) is dict:
-            for key, val in sorted(value.items()):
-                child = QTreeWidgetItem()
-                child.setText(0, str(key))
-                if type(val) is dict:
-                    item.addChild(child)
-                    self.fill_item(child, val)
-                else:
-                    if val == 'process_enabled':
-                        item.addChild(child)
-
-        elif type(value) is list:
-            for val in value:
-                child = QTreeWidgetItem()
-                item.addChild(child)
-                if type(val) is dict:
-                    child.setText(0, '[dict]')
-                    self.fill_item(child, val)
-                elif type(val) is list:
-                    child.setText(0, '[list]')
-                    self.fill_item(child, val)
-                else:
-                    child.setText(0, str(val))
-
-                child.setExpanded(True)
-
-        else:
-            if value == 'process_enabled':
-                child = QTreeWidgetItem()
-                child.setText(0, str(value))
-                item.addChild(child)
-
-    def add_package(self, package):
-        pass
-
-    def remove_package(self, package):
-        pass
-
-'''

@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*- #
 """
 
-
 Contains:
     Class:
-        -
+        - PipelineEditorTabs
+        - PipelineEditor
+    Function :
+        - save_pipeline
+        - get_path
+        - find_filename
 
 """
 
@@ -99,8 +103,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
     switch_clicked = QtCore.pyqtSignal(str, Switch)
 
     def __init__(self, project, scan_list, main_window):
-        """
-        Initialization of the Pipeline Editor tabs
+        """Initialization of the Pipeline Editor tabs.
 
         :param project: current project in the software
         :param scan_list: list of the selected database files
@@ -146,10 +149,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.tabBarClicked.connect(self.check_modifications)
 
     def new_tab(self):
-        """
-        Creates a new tab and a new editor and makes the new tab current
-
-        """
+        """Create a new tab and a new editor and makes the new tab current."""
 
         # Creating a new editor
         p_e = PipelineEditor(self.project, self.main_window)
@@ -181,8 +181,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.setCurrentIndex(self.count() - 2)
 
     def close_tab(self, idx):
-        """
-        Closes the selected tab and editor
+        """Close the selected tab and editor.
 
         :param idx: index of the tab to close
         """
@@ -235,8 +234,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             self.redos[p_e] = []
 
     def set_current_editor_by_tab_name(self, tab_name):
-        """
-        Sets the current editor
+        """Set the current editor.
 
         :param tab_name: name of the tab
         """
@@ -244,8 +242,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.setCurrentIndex(self.get_index_by_tab_name(tab_name))
 
     def set_current_editor_by_file_name(self, file_name):
-        """
-        Sets the current editor
+        """Set the current editor.
 
         :param file_name: name of the file the pipeline was last saved to
         """
@@ -253,8 +250,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.setCurrentIndex(self.get_index_by_filename(file_name))
 
     def set_current_editor_by_editor(self, editor):
-        """
-        Sets the current editor
+        """Set the current editor.
 
         :param editor: editor in the tab that should be made current
         """
@@ -262,8 +258,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.setCurrentIndex(self.get_index_by_editor(editor))
 
     def get_editor_by_index(self, idx):
-        """
-        Gets the instance of an editor from its index in the editors
+        """Get the instance of an editor from its index in the editors.
 
         :param idx: index of the editor
         :return: the editor corresponding to the index
@@ -274,8 +269,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             return self.widget(idx)
 
     def get_current_editor(self):
-        """
-        Gets the instance of the current editor
+        """Get the instance of the current editor.
 
         :return: the current editor
         """
@@ -283,8 +277,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_editor_by_index(self.currentIndex())
 
     def get_editor_by_tab_name(self, tab_name):
-        """
-        Gets the instance of an editor from its tab name
+        """Get the instance of an editor from its tab name.
 
         :param tab_name: name of the tab
         :return: the editor corresponding to the tab name
@@ -293,8 +286,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_editor_by_index(self.get_index_by_tab_name(tab_name))
 
     def get_editor_by_file_name(self, file_name):
-        """
-        Gets the instance of an editor from its file name
+        """Get the instance of an editor from its file name.
 
         :param file_name: name of the file the pipeline was last saved to
         :return: the editor corresponding to the file name
@@ -303,8 +295,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_editor_by_index(self.get_index_by_filename(file_name))
 
     def get_tab_name_by_index(self, idx):
-        """
-        Gets the tab name of the editor at the given index.
+        """Get the tab name of the editor at the given index.
         Trailing " \*" and ampersand ("&") characters are removed.
 
         :param idx: index of the editor
@@ -321,8 +312,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             return tab_name
 
     def get_current_tab_name(self):
-        """
-        Get the tab name of the editor in the current tab.
+        """Get the tab name of the editor in the current tab.
         Trailing " \*" and ampersand ("&") characters are removed.
 
         :return: the current tab name
@@ -331,8 +321,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_tab_name_by_index(self.currentIndex())
 
     def get_filename_by_index(self, idx):
-        """
-        Get the relative path to the file the pipeline in the editor at the
+        """Get the relative path to the file the pipeline in the editor at the
            given index has been last saved to.
         If the pipeline has never been saved, returns the title of the tab.
 
@@ -345,8 +334,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             return editor.get_current_filename()
 
     def get_current_filename(self):
-        """
-        Gets the relative path to the file the pipeline in the current editor
+        """Get the relative path to the file the pipeline in the current editor
            has been last saved to.
         If the pipeline has never been saved, returns the title of the tab.
 
@@ -356,8 +344,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_filename_by_index(self.currentIndex())
 
     def get_index_by_tab_name(self, tab_name):
-        """
-        Gets the index of the editor corresponding to the given tab name
+        """Get the index of the editor corresponding to the given tab name.
 
         :param tab_name: name of the tab with the searched pipeline
         :return: the index corresponding to the tab name
@@ -368,8 +355,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                 return idx
 
     def get_index_by_filename(self, filename):
-        """
-        Gets the index of the first editor corresponding to the given
+        """Get the index of the first editor corresponding to the given
            pipeline filename
 
         :param filename: filename of the searched pipeline
@@ -385,8 +371,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                     return idx
 
     def get_index_by_editor(self, editor):
-        """
-        Gets the index of the editor corresponding to the given editor
+        """Get the index of the editor corresponding to the given editor.
 
         :param editor: searched pipeline editor
         :return: the index corresponding to the editor
@@ -396,8 +381,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                 return idx
 
     def get_current_pipeline(self):
-        """
-        Gets the instance of the current pipeline
+        """Get the instance of the current pipeline.
 
         :return: the pipeline of the current editor
         """
@@ -405,9 +389,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         return self.get_current_editor().scene.pipeline
 
     def save_pipeline(self, new_file_name=None):
-        """Saves the pipeline of the current editor.
-
-        """
+        """Save the pipeline of the current editor."""
         if new_file_name is None:
             # Doing a "Save as" action
             new_file_name = os.path.basename(
@@ -450,8 +432,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                             os.path.basename(new_file_name))
 
     def load_pipeline(self, filename=None):
-        """
-        Loads a new pipeline
+        """Load a new pipeline.
 
         :param filename: not None only when this method is called from
           "open_sub_pipeline"
@@ -496,24 +477,17 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             self.close_tab(working_index)
 
     def save_pipeline_parameters(self):
-        """
-        Saves the pipeline parameters of the current editor
-
-        """
+        """Save the pipeline parameters of the current editor"""
 
         self.get_current_editor().save_pipeline_parameters()
 
     def load_pipeline_parameters(self):
-        """
-        Loads parameters to the pipeline of the current editor
-
-        """
+        """Load parameters to the pipeline of the current editor"""
 
         self.get_current_editor().load_pipeline_parameters()
 
     def emit_node_clicked(self, node_name, process):
-        """
-        Emits a signal when a node is clicked
+        """Emit a signal when a node is clicked.
 
         :param node_name: node name
         :param process: process of the corresponding node
@@ -522,8 +496,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.node_clicked.emit(node_name, process)
 
     def emit_switch_clicked(self, node_name, switch):
-        """
-        Emits a signal when a switch is clicked
+        """Emit a signal when a switch is clicked.
 
         :param node_name: node name
         :param switch: process of the corresponding node
@@ -532,8 +505,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.switch_clicked.emit(node_name, switch)
 
     def emit_pipeline_saved(self, filename):
-        """
-        Emits a signal when a pipeline is saved
+        """Emit a signal when a pipeline is saved.
 
         :param filename: file name of the pipeline
         """
@@ -542,8 +514,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.pipeline_saved.emit(filename)
 
     def update_pipeline_editors(self, editor):
-        """
-        Update editors
+        """Update editor.
 
         :param editor: editor
         """
@@ -552,8 +523,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.update_scans_list()
 
     def update_history(self, editor):
-        """
-        Updates undo/redo history of an editor
+        """Update undo/redo history of an editor
 
         :param editor: editor
         """
@@ -564,16 +534,12 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                         self.get_current_tab_name() + " *")  # make sure the " *" is there
 
     def reset_pipeline(self):
-        """
-        Resets the pipeline of the current editor
-        """
+        """Reset the pipeline of the current editor"""
 
         self.get_current_editor()._reset_pipeline()
 
     def update_scans_list(self):
-        """
-        Updates the list of database scans in every editor
-        """
+        """Update the list of database scans in every editor"""
 
         for i in range(self.count() - 1):
             pipeline = self.widget(i).scene.pipeline
@@ -585,8 +551,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
                                 node.set_plug_value(plug_name, self.scan_list)
 
     def open_sub_pipeline(self, sub_pipeline):
-        """
-        Opens a sub-pipeline in a new tab.
+        """Open a sub-pipeline in a new tab.
 
         :param sub_pipeline: the pipeline to open
         """
@@ -621,8 +586,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.load_pipeline(sub_pipeline_filename)
 
     def open_filter(self, node_name):
-        """
-        Opens a filter widget
+        """Open a filter widget.
 
         :param node_name: name of the corresponding node
         """
@@ -631,8 +595,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.filter_widget.show()
 
     def export_to_db_scans(self, node_name):
-        """
-        Exports the input of a filter to "database_scans" plug
+        """Export the input of a filter to "database_scans" plug.
 
         :param node_name:
         """
@@ -651,10 +614,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
         self.get_current_editor().scene.update_pipeline()
 
     def check_modifications(self, current_index):
-        """
-        Checks if the nodes of the current pipeline have been modified
-
-        """
+        """Check if the nodes of the current pipeline have been modified"""
 
         # If the user click on the last tab (with the '+'),
         # it will throw an AttributeError
@@ -664,8 +624,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
             pass
 
     def has_pipeline_nodes(self):
-        """
-        Checks if any of the pipelines in the editor tabs have pipeline nodes
+        """Check if any of the pipelines in the editor tabs have pipeline nodes
 
         :return: True or False depending on if there are nodes in the editors
         """
@@ -680,8 +639,7 @@ class PipelineEditorTabs(QtWidgets.QTabWidget):
 
 
 class PipelineEditor(PipelineDevelopperView):
-    """
-    View to edit a pipeline graphically
+    """View to edit a pipeline graphically
 
     Methods:
         - _del_link: deletes a link
@@ -710,8 +668,7 @@ class PipelineEditor(PipelineDevelopperView):
     pipeline_modified = QtCore.pyqtSignal(PipelineDevelopperView)
 
     def __init__(self, project, main_window):
-        """
-        Initialization of the PipelineEditor
+        """Initialization of the PipelineEditor.
 
         :param project: current project in the software
         """
@@ -729,8 +686,7 @@ class PipelineEditor(PipelineDevelopperView):
         self.redos = []
 
     def dragEnterEvent(self, event):
-        """
-        Event handler when the mouse enters the widget
+        """Event handler when the mouse enters the widget.
 
         :param event: event
         """
@@ -739,8 +695,7 @@ class PipelineEditor(PipelineDevelopperView):
             event.accept()
 
     def dragMoveEvent(self, event):
-        """
-        Event handler when the mouse moves in the widget
+        """Event handler when the mouse moves in the widget.
 
         :param event: event
         """
@@ -749,8 +704,8 @@ class PipelineEditor(PipelineDevelopperView):
             event.accept()
 
     def dropEvent(self, event):
-        """
-        Event handler when something is dropped in the widget
+        """Event handler when something is dropped in the widget.
+
         :param event: event
 
         """
@@ -761,8 +716,7 @@ class PipelineEditor(PipelineDevelopperView):
             self.find_process(path.decode('utf8'))
 
     def find_process(self, path):
-        """
-        Finds the dropped process in the system's paths
+        """Find the dropped process in the system's paths.
 
         :param path: class's path (e.g. "nipype.interfaces.spm.Smooth") (str)
         """
@@ -783,8 +737,7 @@ class PipelineEditor(PipelineDevelopperView):
                     QtGui.QApplication.restoreOverrideCursor()
 
     def update_history(self, history_maker, from_undo, from_redo):
-        """
-        Update the history for undos and redos.
+        """Update the history for undos and redos.
         This method is called after each action in the PipelineEditor.
 
         :param history_maker: list that contains information about what has
@@ -808,8 +761,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def add_process(self, class_process, node_name=None,
                     from_undo=False, from_redo=False, links=[]):
-        """
-        Add a process to the pipeline.
+        """Add a process to the pipeline.
 
         :param class_process: process class's name (str)
         :param node_name: name of the corresponding node (using when undo/redo) (str)
@@ -883,8 +835,7 @@ class PipelineEditor(PipelineDevelopperView):
             "Node {0} has been added.".format(node_name))
 
     def del_node(self, node_name=None, from_undo=False, from_redo=False):
-        """
-        Delete a node.
+        """Delete a node.
 
         :param node_name: name of the corresponding node (using when undo/redo)
         :param from_undo: boolean, True if the action has been made using an
@@ -952,8 +903,8 @@ class PipelineEditor(PipelineDevelopperView):
             "Node {0} has been deleted.".format(node_name))
 
     def _release_grab_link(self, event, ret=False):
-        """
-        Method called when a link is released
+        """Method called when a link is released.
+
         :param event: mouse event corresponding to the release
         :param ret: boolean that is set to True in the original method to
            return the link
@@ -972,8 +923,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def add_link(self, source, dest, active, weak,
                  from_undo=False, from_redo=False):
-        """
-        Add a link between two nodes.
+        """Add a link between two nodes.
 
         :param source: tuple containing the node and plug source names
         :param dest: tuple containing the node and plug destination names
@@ -1004,8 +954,7 @@ class PipelineEditor(PipelineDevelopperView):
             'Link {0} has been added.'.format(link))
 
     def _del_link(self, link=None, from_undo=False, from_redo=False):
-        """
-        Delete a link.
+        """Delete a link.
 
         :param link: string representation of a link
            (e.g. "process1.out->process2.in")
@@ -1043,8 +992,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def update_node_name(self, old_node, old_node_name, new_node_name,
                          from_undo=False, from_redo=False):
-        """
-        Update a node name.
+        """Update a node name.
 
         :param old_node: Node object to change
         :param old_node_name: original name of the node (str)
@@ -1106,8 +1054,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def update_plug_value(self, node_name, new_value, plug_name, value_type,
                           from_undo=False, from_redo=False):
-        """
-        Update a plug value.
+        """Update a plug value.
 
         :param node_name: name of the node (str)
         :param new_value: new value to set to the plug
@@ -1137,8 +1084,7 @@ class PipelineEditor(PipelineDevelopperView):
     def _export_plug(self, pipeline_parameter=False, optional=None,
                      weak_link=None, from_undo=False, from_redo=False,
                      temp_plug_name=None):
-        """
-        Export a plug to a pipeline global input or output.
+        """Export a plug to a pipeline global input or output.
 
         :param pipeline_parameter: name of the pipeline input/output
         :param optional: True if the plug is optional
@@ -1201,8 +1147,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def export_node_plugs(self, node_name, inputs=True, outputs=True,
                           optional=False, from_undo=False, from_redo=False):
-        """
-        Exports all the plugs of a node
+        """Export all the plugs of a node
 
         :param node_name: node name
         :param inputs: True if the inputs have to be exported
@@ -1240,8 +1185,7 @@ class PipelineEditor(PipelineDevelopperView):
 
     def _remove_plug(self, _temp_plug_name=None, from_undo=False,
                      from_redo=False, from_export_plugs=False):
-        """
-        Removes a plug
+        """Remove a plug
 
         :param _temp_plug_name: tuple containing (the name of the node,
            the name of the plug) to remove
@@ -1288,9 +1232,7 @@ class PipelineEditor(PipelineDevelopperView):
                     "Plug {0} has been removed.".format(_temp_plug_name[1]))
 
     def check_modifications(self):
-        """
-        Checks if the nodes of the pipeline have been modified
-        """
+        """Check if the nodes of the pipeline have been modified."""
 
         pipeline = self.scene.pipeline
         config = Config()
@@ -1436,7 +1378,7 @@ class PipelineEditor(PipelineDevelopperView):
             pop_up.exec_()
 
     def save_pipeline(self, filename=None):
-        """Saves the pipeline
+        """Save the pipeline.
 
         :return: the pipeline file name
         """
@@ -1497,8 +1439,7 @@ class PipelineEditor(PipelineDevelopperView):
             return filename
 
     def get_current_filename(self):
-        """
-        Returns the relative path the pipeline was last saved to.
+        """Return the relative path the pipeline was last saved to.
         Empty if never saved.
 
         :return: the current pipeline file name
@@ -1510,7 +1451,7 @@ class PipelineEditor(PipelineDevelopperView):
 
 
 def save_pipeline(pipeline, filename):
-    """Save the pipeline either in XML or .py source file"""
+    """Save the pipeline either in XML or .py source file."""
     formats = {'.py': save_py_pipeline,
                '.xml': save_xml_pipeline}
     saved = False
@@ -1528,8 +1469,7 @@ def save_pipeline(pipeline, filename):
 
 
 def get_path(name, dictionary, prev_paths=None):
-    """
-    Return the package path to the selected sub-pipeline.
+    """Return the package path to the selected sub-pipeline.
 
     :param name: name of the sub-pipeline
     :param dictionary: package tree (read from process_config.yml)
