@@ -29,10 +29,10 @@ class ImageViewer(QWidget):
     def __init__(self):
 
         super(ImageViewer,self).__init__()
-        
+
         pal = QPalette()
         pal.setColor(QPalette.Background, Qt.lightGray)
-       
+
         self.factor = 3.0
 
         self.config = Config()
@@ -45,12 +45,12 @@ class ImageViewer(QWidget):
         self.browserFile()
         self.imgqLabel()
         self.boxSliders()
-        
+
         self.verticalLayout = QVBoxLayout(self)
         self.horizontalLayout = QHBoxLayout(self)
 
         self.textInfo = QTextEdit()
-     
+
         self.textInfoTop = QTextEdit()
         self.textInfoTop.setEnabled(True)
         self.textInfoTop.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Ignored)
@@ -58,13 +58,13 @@ class ImageViewer(QWidget):
         self.textInfoTop.setStyleSheet("background-color: lightgray")
         #self.textInfoTop.adjustSize()
         self.textInfoTop.setText('Welcome to IRMaGe')
-        
+
         self.tableJson = QTableWidget()
         self.tableJson.setColumnCount(2)
         self.tableJson.setColumnWidth(0,150)
         self.tableJson.setColumnWidth(1,400)
         self.tableJson.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        
+
 
         self.tableJson.setHorizontalHeaderLabels(['Keys','Values'])
         #self.tableJson.setBackgroundRole(QPalette.Light)
@@ -85,9 +85,9 @@ class ImageViewer(QWidget):
         # self.adjustScrollBar(self.scrollTable.horizontalScrollBar(), 2.0)
         # self.adjustScrollBar(self.scrollTable.verticalScrollBar(), 2.0)
         #=======================================================================
-        
+
         self.headerTabData = ['Data','PatientName','StudyName','DateCreation','PatientSex','PatientWeight','ProtocolName','SequenceName']
-        
+
         self.tableData = TableDataBrower(self)
         self.tableData.setColumnCount(8)
         self.tableData.setRowCount(10)
@@ -96,22 +96,22 @@ class ImageViewer(QWidget):
         self.tableData.setBackgroundRole(QPalette.Light)
         self.tableData.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
         self.tableData.verticalHeader().hide()
-                
+
         self.scrollBrowser = QScrollArea()
         self.scrollBrowser.setBackgroundRole(QPalette.Dark)
         self.scrollBrowser.setWidget(self.tableData)
         self.scrollBrowser.setWidgetResizable(True)
-        
+
         self.splitter0 = QSplitter(Qt.Vertical)
         self.splitter0.addWidget(self.scrollText)
         self.splitter0.addWidget(self.scrollTable)
-        
+
         self.scrollArea = QScrollArea()
         self.scrollArea.setBackgroundRole(QPalette.Dark)
         self.scrollArea.setWidget(self.imageLabel)
         self.scrollArea.setWidgetResizable(False)
         self.scrollArea.setAlignment(Qt.AlignCenter)
-    
+
         self.adjustScrollBar(self.scrollArea.horizontalScrollBar(), 0.8)
         self.adjustScrollBar(self.scrollArea.verticalScrollBar(), 1.0)
 
@@ -119,7 +119,7 @@ class ImageViewer(QWidget):
         self.splitter1.addWidget(self.splitter0)
         self.splitter1.addWidget(self.scrollArea)
         self.splitter1.addWidget(self.layoutSlide)
-        
+
         self.splitter3 = QSplitter(Qt.Horizontal)
         self.splitter3.addWidget(self.browser)
         self.splitter3.addWidget(self.scrollBrowser)
@@ -132,14 +132,14 @@ class ImageViewer(QWidget):
         # self.splitter2.
         #=======================================================================
 
-         
+
         self.verticalLayout.addWidget(self.menuToolBar)
         self.verticalLayout.addWidget(self.splitter2)
-       
+
         self.setWindowTitle("MRImage Viewer (IRMaGe)")
         self.resize(800,600)
 
-        
+
         self.setAutoFillBackground(True)
         self.setPalette(pal)
 
@@ -180,7 +180,7 @@ class ImageViewer(QWidget):
         self.navigImage()
         self.fitToWindowAct.setEnabled(True)
         self.fitToWindow()
-    
+
     def openJson(self,pathJson,fileName):
         with open(pathJson, 'r') as stream:
             try:
@@ -189,7 +189,7 @@ class ImageViewer(QWidget):
                 data = json.loads(data)
                 rowPosition=0
                 self.tableJson.setRowCount(0)
-                
+
                 i=0
                 for keyd in self.headerTabData:
                     try:
@@ -222,7 +222,7 @@ class ImageViewer(QWidget):
                 self.tableJson.insertRow(0)
                 self.tableJson.setItem(0,0,QTableWidgetItem(itemError))
                 print(exc)
-    
+
     def jsonParser(self,pathJson):
         with open(pathJson,'r') as stream:
             try:
@@ -232,7 +232,7 @@ class ImageViewer(QWidget):
             except json.JSONDecodeError as exc:
                 itemError = 'Error Json format'
         return listTag
-    
+
     def tableDataFill(self,pathRepertory):
         files = [f for f in fnmatch.filter(os.listdir(pathRepertory),'*.nii') ]
         self.tableData.setRowCount(0)
@@ -258,7 +258,7 @@ class ImageViewer(QWidget):
             self.tableData.setItem(j,0,QTableWidgetItem(f))
             self.tableData.resizeColumnsToContents()
             j+=1
- 
+
     def indexImage(self):
         sl1 = self.a1.value()
         sl2 = self.a2.value()
@@ -527,23 +527,23 @@ class ImageViewer(QWidget):
 
 ####################################################################################
     def browserFile(self):
-        
+
         global Browser,Model
-        
+
         self.browser = QTreeView()
-                
+
         model = QFileSystemModel()
         model.setNameFilters(['*.nii'])
         model.setNameFilterDisables(False)
         model.setReadOnly(True)
-        
-        
+
+
         self.browser.setModel(model)
         self.browser.expandAll()
         self.browser.setColumnWidth(0,400)
 
         self.browser.selectionModel().selectionChanged.connect(self.select)
-        
+
         Browser=self.browser
         Model=model
 
@@ -579,7 +579,7 @@ class ImageViewer(QWidget):
         else:
             self.tableData.setRowCount(0)
             self.currentRep=filePath
-            
+
 
         self.textInfoTop.setTextColor(blackColor)
         self.scrollText.setWidgetResizable(True)
@@ -600,16 +600,16 @@ class ImageViewer(QWidget):
 
         self.helpMenu = QMenu("&Help", self)
         self.helpMenu.addAction(self.aboutAct)
-        
+
         self.menuBar = QMenuBar()
 
         self.menuBar.addMenu(self.fileMenu)
         self.menuBar.addMenu(self.viewMenu)
         self.menuBar.addMenu(self.helpMenu)
-    
+
     def createToolbarMenus(self):
         self.menuToolBar = QToolBar()
-        
+
         viewMenu = QToolButton()
         viewMenu.setText('View')
         viewMenu.setPopupMode(QToolButton.MenuButtonPopup)
@@ -620,16 +620,16 @@ class ImageViewer(QWidget):
         aMenu.addSeparator()
         aMenu.addAction(self.fitToWindowAct)
         viewMenu.setMenu(aMenu)
-        
+
         helpMenu = QToolButton()
         helpMenu.setText('Help')
         helpMenu.setPopupMode(QToolButton.MenuButtonPopup)
         bMenu = QMenu()
         helpMenu.setMenu(bMenu)
-        
+
         self.menuToolBar.addWidget(viewMenu)
         self.menuToolBar.addWidget(helpMenu)
-        
+
 
     def createActions(self):
         self.exitAct = QAction("Exit", self, shortcut="Ctrl+Q",
@@ -685,11 +685,12 @@ class ImageViewer(QWidget):
 
     def close(self):
         self.close()
-        
+
+
 class TableDataBrower(QTableWidget):
-        
+
     def mousePressEvent(self, e):
-        if e.button() == Qt.LeftButton : 
+        if e.button() == Qt.LeftButton :
             temp = self.itemAt(e.pos())
             if temp != None :
                 self.t = temp.row()
@@ -707,7 +708,7 @@ class TableDataBrower(QTableWidget):
     #     if action == detailAction:
     #         self.detAct()
     #===========================================================================
-    
+
     def contextMenuEvent(self, pos):
         if self.selectionModel().selection().indexes():
             for i in self.selectionModel().selection().indexes():
@@ -722,4 +723,4 @@ class TableDataBrower(QTableWidget):
 
     def openAction(self, row, column):
         print(row,column)
-        
+
